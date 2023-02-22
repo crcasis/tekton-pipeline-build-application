@@ -1,0 +1,45 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: clone-build-push-run
+spec:
+  pipelineRef:
+    name: clone-build-push
+  podTemplate: {}
+  workspaces:
+  - name: shared-data-frontend
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+  - name: shared-data-backend
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+  - name: shared-data-devops
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+  - name: git-credentials
+    secret:
+      secretName: gitlab-credentials
+  params:
+  - name: repo-url-frontend
+    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-frontend.git
+  - name: repo-url-backend
+    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-backend.git
+  - name: repo-url-devops
+    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-devops.git 
+  - name: image-reference
+    value: te-service
