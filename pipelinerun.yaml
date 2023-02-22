@@ -36,10 +36,10 @@ spec:
       secretName: gitlab-credentials
   params:
   - name: repo-url-frontend
-    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-frontend.git
+    value: git@xxxx
   - name: repo-url-backend
-    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-backend.git
+    value: git@xxxxx
   - name: repo-url-devops
-    value: git@gitlab.com:tendereasy-company/TenderEasy/tendereasy-devops.git 
+    value: git@xxxxx
   - name: image-reference
     value: te-service
